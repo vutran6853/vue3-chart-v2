@@ -125,13 +125,15 @@ function generateChart(chartsId: string, chartsType: string) {
     }
   })
 }
-const HorizontalBar = generateChart('horizontalbar-chart', 'horizontalBar')
+
+const Bar = generateChart('bar-chart', 'Bar')
+const Bubble = generateChart('bubble-chart', 'bubble')
 const Doughnut = generateChart('doughnut-chart', 'doughnut')
+const HorizontalBar = generateChart('horizontalbar-chart', 'horizontalBar')
 const Line = generateChart('line-chart', 'line')
 const Pie = generateChart('pie-chart', 'pie')
 const PolarArea = generateChart('polar-chart', 'polarArea')
 const Radar = generateChart('radar-chart', 'radar')
-const Bubble = generateChart('bubble-chart', 'bubble')
 const Scatter = generateChart('scatter-chart', 'scatter')
 
 // function renderChart(chartdata: any, options: any) {
@@ -202,13 +204,14 @@ const Scatter = generateChart('scatter-chart', 'scatter')
 // }
 
 export {
-  HorizontalBar,
+  Bar,
+  Bubble,
   Doughnut,
+  HorizontalBar,
   Line,
   Pie,
   PolarArea,
   Radar,
-  Bubble,
   Scatter,
   generateChart
   // renderChart

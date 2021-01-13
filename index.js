@@ -1,4 +1,5 @@
 import {
+  Bar,
   Bubble,
   Doughnut,
   HorizontalBar,
@@ -11,14 +12,16 @@ import {
 } from './src/components/BaseChart'
 
 export {
-  HorizontalBar,
+  Bar,
+  Bubble,
   Doughnut,
+  HorizontalBar,
   Line,
   Pie,
   PolarArea,
   Radar,
-  Bubble,
   Scatter,
   generateChart
   // renderChart
 }
+

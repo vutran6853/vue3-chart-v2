@@ -1,11 +1,10 @@
 # vue3-chartjs
+vue3-chartjs is a wrapper for [Chart.js](https://github.com/chartjs/Chart.js) in vue 3. You can easily create reuseable chart components. Inspired by vue-chartjs
 
 ## Install
 
 - **npm** `npm install vue3-chartjs chart.js --save`
 - **yarn** `yarn add vue3-chartjs chart.js`
-
-
 
 ## How to use
 
@@ -23,7 +22,7 @@ Just create your own component.
 ```vue
 <script>
 import { defineComponent } from 'vue'
-import { Bar } from 'vue-chartjs'
+import { Bar } from 'vue3-chart-v2'
 
 export default defineComponent({
   name: 'MonthlyChart',
@@ -67,7 +66,7 @@ You can overwrite the default chart options as props. Just pass the options obje
 ```js
 // MonthlyChart.vue
 import { defineComponent } from 'vue'
-import { Line } from 'vue-chartjs'
+import { Line } from 'vue3-chart-v2'
 
 export default defineComponent({
   name: 'MonthlyChart',
@@ -137,3 +136,24 @@ export default defineComponent({
 ### Scatter
 
 ![Scatter](assets/scatter.png)
+
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# run unit tests
+npm run test:unit
+```
+
+## Contributing
+
+1. Fork it (https://github.com/vutran6853/vue3-chartjs/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
