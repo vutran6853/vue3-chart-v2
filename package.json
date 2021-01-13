@@ -5,10 +5,24 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "prettier:src": "npx prettier -w src/**"
   },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "ChartJs",
+    "Vue3-chart",
+    "wrapper",
+    "Vue 3"
+  ],
   "dependencies": {
+    "@types/chart.js": "^2.9.29",
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
+    "prettier": "^2.2.1",
     "vue": "^3.0.0"
   },
   "devDependencies": {
