@@ -8,8 +8,8 @@ export default defineComponent({
   render() {
     return (
       <div>
-        <h1>app tsx</h1>
-        <Line />
+        {/* <h1>app tsx</h1> */}
+        {/* <Line /> */}
         {/* <Chart  /> */}
         {/* <RandomChart /> */}
       </div>

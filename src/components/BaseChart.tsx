@@ -1,5 +1,5 @@
 import Chart from 'chart.js'
-import { defineComponent } from 'vue'
+import { defineComponent, Fragment } from 'vue'
 
 // interface IBaseChart {
 //   width: number,
@@ -117,10 +117,9 @@ function generateChart(chartsId: string, chartsType: string) {
     },
     render() {
       return (
-        <div>
-          <h3>BaseChart Components tsxsss</h3>
+        <Fragment>
           <canvas ref="canvas" id={chartsId} width={(this as any).width} height={(this as any).height}></canvas>
-        </div>
+        </Fragment>
       )
     }
   })
@@ -135,73 +134,6 @@ const Pie = generateChart('pie-chart', 'pie')
 const PolarArea = generateChart('polar-chart', 'polarArea')
 const Radar = generateChart('radar-chart', 'radar')
 const Scatter = generateChart('scatter-chart', 'scatter')
-
-// function renderChart(chartdata: any, options: any) {
-//   console.log('i am call')
-//   // (document as any).getElementById('pie-chart').getContext('2d')
-
-//   let ctx = (document as any).getElementById('pie-chart').getContext('2d')
-//   new Chart(ctx, {
-//     type: 'pie',
-//     data: chartdata,
-//     options: options,
-//     // plugins: this.$data._plugins
-//   })
-
-//   // return defineComponent({
-//   //   name: 'BaseChart',
-//   //   props: {
-//   //     chartId: {
-//   //       type: String as PropType<'Vu' | 'Tran'>,
-//   //       required: true,
-//   //       // default: 'myChart',
-//   //     },
-//   //     chartType: {
-//   //       type: String,
-//   //       required: false,
-//   //     },
-//   //     width: {
-//   //       type: Number,
-//   //       required: false,
-//   //       default: 400,
-//   //     },
-//   //     height: {
-//   //       type: Number,
-//   //       required: false,
-//   //       default: 400,
-//   //     },
-//   //     cssClasses: {
-//   //       type: String,
-//   //       required: false,
-//   //       default: ''
-//   //     },
-//   //     styles: {
-//   //       type: Object,
-//   //       required: false,
-//   //     }
-//   //   },
-//   //   data (): IBaseChart {
-//   //     return {
-//   //       state: {
-//   //         chartObj: null
-//   //       }
-//   //     }
-//   //   },
-//   //   beforeUnmount () {
-//   //     if (this.state.chartObj) {
-//   //       this.state.chartObj.destroy()
-//   //     }
-//   //   },
-//   //   render () {
-//   //     return (
-//   //       <div>
-//   //         <h1>BaseChart Components tsxsss</h1>
-//   //         <canvas ref="canvas" id={chartsId} width={(this as any).width} height={(this as any).height}></canvas>
-//   //       </div>
-//   //     )
-//   //   }
-//   // })
-// }
 
 export {
   Bar,

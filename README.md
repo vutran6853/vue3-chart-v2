@@ -26,7 +26,7 @@ import { Bar } from 'vue3-chart-v2'
 
 export default defineComponent({
   name: 'MonthlyChart',
-  extends: [Bar],
+  extends: Bar,
   mounted () {
     // Overwriting base render method with actual data.
     this.renderChart({
@@ -70,7 +70,7 @@ import { Line } from 'vue3-chart-v2'
 
 export default defineComponent({
   name: 'MonthlyChart',
-  extends: [Line],
+  extends: Line,
   props: {
     chartData: {
       type: Object,
