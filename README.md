@@ -1,10 +1,16 @@
-# vue3-chartjs
-vue3-chartjs is a wrapper for [Chart.js](https://github.com/chartjs/Chart.js) in vue 3. You can easily create reuseable chart components. Inspired by vue-chartjs
+# vue3-chart-v2
+vue3-chart-v2 is a wrapper for [Chart.js](https://github.com/chartjs/Chart.js) in vue 3. You can easily create reuseable chart components. Inspired by vue-chartjs
+
+## Looking for the documentation?
+Head over here ==> [vue3-chart-v2](https://vue3-chart-v2.netlify.app/)
+
+## Prerequisite
+- Vue 3 is required
 
 ## Install
 
-- **npm** `npm install vue3-chartjs chart.js --save`
-- **yarn** `yarn add vue3-chartjs chart.js`
+- **npm** `npm install vue3-chart-v2 chart.js --save`
+- **yarn** `yarn add vue3-chart-v2 chart.js`
 
 ## How to use
 
@@ -152,7 +158,7 @@ npm run test:unit
 
 ## Contributing
 
-1. Fork it (https://github.com/vutran6853/vue3-chartjs/fork )
+1. Fork it (https://github.com/vutran6853/vue3-chart-v2/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -m 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
