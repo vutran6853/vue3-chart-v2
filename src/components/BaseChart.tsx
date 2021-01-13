@@ -76,23 +76,23 @@ function generateChart(chartsId: string, chartsType: string) {
       }
     },
     methods: {
-      // renderChart (userData: any, userOptions: any ) {
-      //   if (this.state.chartObj) {
-      //     this.state.chartObj.destroy()
-      //   }
-      //   if (!this.$refs.canvas) {
-      //     throw new Error('Please remove the <template></template> tags from your chart component. See https://vue-chartjs.org/guide/#vue-single-file-components')
-      //   }
-      //   let ctx = (this as any).$refs.canvas.getContext('2d')
-      //   this.state.chartObj = new Chart(ctx, {
-      //     type: chartsType,
-      //     data: userData,
-      //     options: userOptions,
-      //     // plugins: this.$data._plugins
-      //   })
-      // },
+      renderChart (userData: any, userOptions: any ) {
+        if (this.state.chartObj) {
+          this.state.chartObj.destroy()
+        }
+        // if (!this.$refs.canvas) {
+        //   throw new Error('Please remove the <template></template> tags from your chart component. See https://vue-chartjs.org/guide/#vue-single-file-components')
+        // }
+        let ctx = (this as any).$refs.canvas.getContext('2d')
+        this.state.chartObj = new Chart(ctx, {
+          type: chartsType,
+          data: userData,
+          options: userOptions,
+          // plugins: this.$data._plugins
+        })
+      },
     },
-    mounted() {
+    beforeMount() {
       if ((document as any).getElementById(chartsId)) {
         let ctx = (document as any).getElementById(chartsId).getContext('2d')
         this.state.chartObj = new Chart(ctx, {
