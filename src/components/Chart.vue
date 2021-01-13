@@ -26,14 +26,14 @@ export default defineComponent({
   //   }
   // },
   props: {
+    chartData: {
+      type: Object,
+      required: true
+    },
     chartOptions: {
       type: Object,
       required: false
     },
-    chartData: {
-      type: Object,
-      required: true
-    }
   },
   mounted() {
     // renderChart(this.chartdata, this.chartOptions)
