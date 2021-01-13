@@ -1,24 +1,6 @@
-# vue3-chart-v2
+# vue3-chartjs
 
-## Project setup
-```
-npm install
-```
+## Install
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- **npm** install: `npm install vue3-chartjs chart.js --save`
+- **yarn** install: `yarn add vue3-chartjs chart.js`
