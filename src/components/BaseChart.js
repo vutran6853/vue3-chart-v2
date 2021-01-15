@@ -1,34 +1,12 @@
 import Chart from 'chart.js'
 import { defineComponent, Fragment, h } from 'vue'
 
-// interface IBaseChart {
-//   width: number,
-//   height: number,
-//   chartObj: any,
-//   chartType: any
-// }
-interface IBaseChart {
-  state: {
-    chartObj?: Chart | null
-  }
-}
-
-type IBaseChartProps = {
-  chartId: string
-  chartType: string
-  width: number
-  height: number
-  cssClasses: string
-  styles: string
-  plugins: any[]
-}
-
 /**
  * 
  * @param chartsId string
  * @param chartsType string
  */
-function generateChart(chartsId: string, chartsType: string) {
+function generateChart(chartsId, chartsType) {
 
   return defineComponent({
     name: 'BaseChart',
@@ -61,7 +39,7 @@ function generateChart(chartsId: string, chartsType: string) {
         required: false
       }
     },
-    data(): IBaseChart {
+    data() {
       return {
         state: {
           chartObj: null
@@ -76,14 +54,14 @@ function generateChart(chartsId: string, chartsType: string) {
       }
     },
     methods: {
-      renderChart (userData: any, userOptions: any ) {
+      renderChart (userData, userOptions ) {
         if (this.state.chartObj) {
           this.state.chartObj.destroy()
         }
         // if (!this.$refs.canvas) {
         //   throw new Error('Please remove the <template></template> tags from your chart component. See https://vue-chartjs.org/guide/#vue-single-file-components')
         // }
-        let ctx = (this as any).$refs.canvas.getContext('2d')
+        let ctx = (this).$refs.canvas.getContext('2d')
         this.state.chartObj = new Chart(ctx, {
           type: chartsType,
           data: userData,
@@ -93,8 +71,8 @@ function generateChart(chartsId: string, chartsType: string) {
       },
     },
     beforeMount() {
-      if ((document as any).getElementById(chartsId)) {
-        let ctx = (document as any).getElementById(chartsId).getContext('2d')
+      if ((document).getElementById(chartsId)) {
+        let ctx = (document).getElementById(chartsId).getContext('2d')
         this.state.chartObj = new Chart(ctx, {
           type: chartsType,
           data: {
@@ -116,11 +94,12 @@ function generateChart(chartsId: string, chartsType: string) {
       }
     },
     render() {
-      return (
-        <Fragment>
-          <canvas ref="canvas" id={chartsId} width={(this as any).width} height={(this as any).height}></canvas>
-        </Fragment>
-      )
+      return h('canvas', {
+        ref: 'canvas',
+        id: this.chartId,
+        width: this.width,
+        height: this.height
+      })
     }
   })
 }
