@@ -4,17 +4,17 @@ import { defineComponent, Fragment, h, reactive } from 'vue'
 
 function useChartInfo() {
 
-  const state: IState = reactive({
+  const state = reactive({
     myName: '',
     userData: {}, 
     userOptions: {}
   })
 
-  function setChartData(payload: {}) {
+  function setChartData(payload) {
     state.userData = payload
   }
 
-  function setChartOption(payload: {}) {
+  function setChartOption(payload) {
     state.userOptions = payload
   }
 
