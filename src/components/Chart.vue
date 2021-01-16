@@ -1,12 +1,12 @@
 <script>
-import { Pie, Doughnut, renderChart } from './BaseChart'
+import { Line, Doughnut, renderChart } from './BaseChart'
 import { reactiveProp } from './minxins'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'Chart',
-  extends: Pie,
-  mixins: [reactiveProp],
+  extends: Line,
+  // mixins: [reactiveProp],
   // data () {
   //   return {
   //     // chartData: {

@@ -1,5 +1,5 @@
 import Chart from 'chart.js'
-import { defineComponent, Fragment, h } from 'vue'
+import { defineComponent, Fragment, h, reactive } from 'vue'
 
 // interface IBaseChart {
 //   width: number,
@@ -23,12 +23,43 @@ type IBaseChartProps = {
   plugins: any[]
 }
 
+interface IState {
+  myName: string,
+  userData: {}, 
+  userOptions: {}
+}
+
+function useChartInfo() {
+
+  const state: IState = reactive({
+    myName: '',
+    userData: {}, 
+    userOptions: {}
+  })
+
+  function setChartData(payload: {}) {
+    state.userData = payload
+  }
+
+  function setChartOption(payload: {}) {
+    state.userOptions = payload
+  }
+
+  return {
+    state, 
+    setChartData,
+    setChartOption
+  }
+}
+
 /**
  * 
  * @param chartsId string
  * @param chartsType string
  */
 function generateChart(chartsId: string, chartsType: string) {
+  let { state, setChartData, setChartOption } = useChartInfo()
+ 
 
   return defineComponent({
     name: 'BaseChart',
@@ -77,8 +108,12 @@ function generateChart(chartsId: string, chartsType: string) {
     },
     methods: {
       renderChart (userData: any, userOptions: any ) {
+        setChartData(userData)
+        setChartOption(userOptions)
         if (this.state.chartObj) {
-          this.state.chartObj.destroy()
+          // this.state.chartObj.destroy()
+          // setChartData({})
+          // setChartOption({})
         }
         // if (!this.$refs.canvas) {
         //   throw new Error('Please remove the <template></template> tags from your chart component. See https://vue-chartjs.org/guide/#vue-single-file-components')
@@ -114,6 +149,21 @@ function generateChart(chartsId: string, chartsType: string) {
           // plugins: this.$data._plugins
         })
       }
+    },
+    computed: {
+      currentChartData (): any {
+        return state.userData
+      },
+      currentChartOption (): any {
+        return state.userOptions
+      }
+    },
+    watch: {
+      'chartData' (prevState, newState) {
+        if (prevState !== newState) {
+          this.renderChart(newState, this.currentChartOption)
+        }
+      } 
     },
     render() {
       return (

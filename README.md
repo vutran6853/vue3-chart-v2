@@ -1,6 +1,8 @@
 # vue3-chart-v2
 vue3-chart-v2 is a wrapper for [Chart.js](https://github.com/chartjs/Chart.js) in vue 3. You can easily create reuseable chart components. Inspired by vue-chartjs
 
+[![npm](https://img.shields.io/badge/npm%20package-0.6.0-blue)](https://www.npmjs.com/package/vue3-chart-v2)
+
 ## Looking for the documentation?
 Head over here ==> [vue3-chart-v2](https://vue3-chart-v2.netlify.app/)
 

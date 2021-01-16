@@ -1,5 +1,29 @@
 import Chart from 'chart.js'
-import { defineComponent, Fragment, h } from 'vue'
+import { defineComponent, Fragment, h, reactive } from 'vue'
+
+
+function useChartInfo() {
+
+  const state: IState = reactive({
+    myName: '',
+    userData: {}, 
+    userOptions: {}
+  })
+
+  function setChartData(payload: {}) {
+    state.userData = payload
+  }
+
+  function setChartOption(payload: {}) {
+    state.userOptions = payload
+  }
+
+  return {
+    state, 
+    setChartData,
+    setChartOption
+  }
+}
 
 /**
  * 
@@ -7,7 +31,8 @@ import { defineComponent, Fragment, h } from 'vue'
  * @param chartsType string
  */
 function generateChart(chartsId, chartsType) {
-
+  let { state, setChartData, setChartOption } = useChartInfo()
+ 
   return defineComponent({
     name: 'BaseChart',
     props: {
@@ -55,8 +80,11 @@ function generateChart(chartsId, chartsType) {
     },
     methods: {
       renderChart (userData, userOptions ) {
+        setChartData(userData)
+        setChartOption(userOptions)
+
         if (this.state.chartObj) {
-          this.state.chartObj.destroy()
+          // this.state.chartObj.destroy()
         }
         // if (!this.$refs.canvas) {
         //   throw new Error('Please remove the <template></template> tags from your chart component. See https://vue-chartjs.org/guide/#vue-single-file-components')
@@ -92,6 +120,21 @@ function generateChart(chartsId, chartsType) {
           // plugins: this.$data._plugins
         })
       }
+    },
+    computed: {
+      currentChartData () {
+        return state.userData
+      },
+      currentChartOption () {
+        return state.userOptions
+      }
+    },
+    watch: {
+      'chartData' (prevState, newState) {
+        if (prevState !== newState) {
+          this.renderChart(newState, this.currentChartOption)
+        }
+      } 
     },
     render() {
       return h('canvas', {

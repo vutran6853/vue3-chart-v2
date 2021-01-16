@@ -105,9 +105,23 @@ const reactiveProp = defineComponent({
       default: () => {}
     }
   },
-  watch: {
-    chartData: dataHandler
-  }
+  computed: {
+    getme (): any {
+      return this.chartData
+    }
+  },
+  // watch: {
+  //   chartData: dataHandler
+  // },
+  // watch: {
+  //   'chartData' (prevState, newState) {
+  //     if (prevState !== newState) {
+  //       console.log(true)
+  //     } else {
+  //       console.log(false)
+  //     }
+  //   } 
+  // }
 })
 
 export { reactiveData, reactiveProp }
