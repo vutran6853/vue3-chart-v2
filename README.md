@@ -1,7 +1,7 @@
 # vue3-chart-v2
 vue3-chart-v2 is a wrapper for [Chart.js](https://github.com/chartjs/Chart.js) in vue 3. You can easily create reuseable chart components. Inspired by vue-chartjs
 
-[![npm](https://img.shields.io/badge/npm%20package-0.6.0-blue)](https://www.npmjs.com/package/vue3-chart-v2)
+[![npm](https://img.shields.io/badge/npm%20package-0.7.0-blue)](https://www.npmjs.com/package/vue3-chart-v2)
 
 ## Looking for the documentation?
 Head over here ==> [vue3-chart-v2](https://vue3-chart-v2.netlify.app/)
@@ -115,35 +115,35 @@ export default defineComponent({
 
 ### Bar Chart
 
-![Bar](assets/bar.png)
+![Bar](src/assets/bar.png)
 
 ### Line Chart
 
-![Line](assets/line.png)
+![Line](src/assets/line.png)
 
 ### Doughnut
 
-![Doughnut](assets/doughnut.png)
+![Doughnut](src/assets/doughnut.png)
 
 ### Pie
 
-![Pie](assets/pie.png)
+![Pie](src/assets/pie.png)
 
 ### Radar
 
-![Pie](assets/radar.png)
+![Pie](src/assets/radar.png)
 
 ### Polar Area
 
-![Pie](assets/polar.png)
+![Pie](src/assets/polar.png)
 
 ### Bubble
 
-![Bubble](assets/bubble.png)
+![Bubble](src/assets/bubble.png)
 
 ### Scatter
 
-![Scatter](assets/scatter.png)
+![Scatter](src/assets/scatter.png)
 
 ## Build Setup
 
