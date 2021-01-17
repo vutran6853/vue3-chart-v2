@@ -1,5 +1,5 @@
 import Chart from 'chart.js'
-import { defineComponent, Fragment, h, reactive } from 'vue'
+import { defineComponent, h, reactive } from 'vue'
 
 // interface IBaseChart {
 //   width: number,
@@ -7,6 +7,7 @@ import { defineComponent, Fragment, h, reactive } from 'vue'
 //   chartObj: any,
 //   chartType: any
 // }
+
 interface IBaseChart {
   state: {
     chartObj?: Chart | null
@@ -24,16 +25,15 @@ type IBaseChartProps = {
 }
 
 interface IState {
-  myName: string,
-  userData: {}, 
+  myName: string
+  userData: {}
   userOptions: {}
 }
 
 function useChartInfo() {
-
   const state: IState = reactive({
     myName: '',
-    userData: {}, 
+    userData: {},
     userOptions: {}
   })
 
@@ -46,20 +46,19 @@ function useChartInfo() {
   }
 
   return {
-    state, 
+    state,
     setChartData,
     setChartOption
   }
 }
 
 /**
- * 
+ *
  * @param chartsId string
  * @param chartsType string
  */
 function generateChart(chartsId: string, chartsType: string) {
   let { state, setChartData, setChartOption } = useChartInfo()
- 
 
   return defineComponent({
     name: 'BaseChart',
@@ -74,13 +73,13 @@ function generateChart(chartsId: string, chartsType: string) {
       },
       width: {
         type: Number,
-        required: false,
-        default: 400
+        required: false
+        // default: 400
       },
       height: {
         type: Number,
-        required: false,
-        default: 400
+        required: false
+        // default: 400
       },
       cssClasses: {
         type: String,
@@ -107,7 +106,7 @@ function generateChart(chartsId: string, chartsType: string) {
       }
     },
     methods: {
-      renderChart (userData: any, userOptions: any ) {
+      renderChart(userData: any, userOptions: any) {
         setChartData(userData)
         setChartOption(userOptions)
         if (this.state.chartObj) {
@@ -118,14 +117,19 @@ function generateChart(chartsId: string, chartsType: string) {
         // if (!this.$refs.canvas) {
         //   throw new Error('Please remove the <template></template> tags from your chart component. See https://vue-chartjs.org/guide/#vue-single-file-components')
         // }
+
+        // REMOVE OLD DATA FIRST BEFORE UPDATE.
+        ;(this.state.chartObj as any)?.data?.datasets.pop()
+
         let ctx = (this as any).$refs.canvas.getContext('2d')
         this.state.chartObj = new Chart(ctx, {
           type: chartsType,
           data: userData,
-          options: userOptions,
+          options: userOptions
           // plugins: this.$data._plugins
         })
-      },
+        this.state.chartObj.update()
+      }
     },
     beforeMount() {
       if ((document as any).getElementById(chartsId)) {
@@ -148,28 +152,30 @@ function generateChart(chartsId: string, chartsType: string) {
           // options: this.options,
           // plugins: this.$data._plugins
         })
+        this.state.chartObj.update()
       }
     },
     computed: {
-      currentChartData (): any {
+      currentChartData(): any {
         return state.userData
       },
-      currentChartOption (): any {
+      currentChartOption(): any {
         return state.userOptions
       }
     },
     watch: {
-      'chartData' (prevState, newState) {
+      chartData(prevState, newState) {
         if (prevState !== newState) {
+          console.log('ENTER WATCHER')
           this.renderChart(newState, this.currentChartOption)
         }
-      } 
+      }
     },
     render() {
       return (
-        <Fragment>
+        <div class={this.styles}>
           <canvas ref="canvas" id={chartsId} width={(this as any).width} height={(this as any).height}></canvas>
-        </Fragment>
+        </div>
       )
     }
   })

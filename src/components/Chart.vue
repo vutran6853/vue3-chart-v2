@@ -1,11 +1,11 @@
 <script>
-import { Line, Doughnut, renderChart } from './BaseChart'
+import { Bar, Pie, Doughnut, renderChart, Line } from './BaseChart'
 import { reactiveProp } from './minxins'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'Chart',
-  extends: Line,
+  extends: Pie,
   // mixins: [reactiveProp],
   // data () {
   //   return {
@@ -33,7 +33,7 @@ export default defineComponent({
     chartOptions: {
       type: Object,
       required: false
-    },
+    }
   },
   mounted() {
     // renderChart(this.chartdata, this.chartOptions)

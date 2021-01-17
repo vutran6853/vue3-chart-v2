@@ -1,11 +1,36 @@
-import { defineComponent } from 'vue'
-import { Pie, Doughnut, Bubble, Line } from './components/BaseChart'
+import { defineComponent, VNode } from 'vue'
+// import { Pie, Doughnut, Bubble, Line } from './components/BaseChart'
 import Chart from './components/Chart.vue'
-import RandomChart from './components/RandomChart.vue'
+// import RandomChart from './components/RandomChart.vue'
+
+interface IAppState {
+  chartData: {
+    labels?: string[]
+    datasets?: [
+      {
+        label?: string
+        backgroundColor?: string
+        data?: number[]
+      }
+    ]
+  }
+  dataCollection: {}
+  chartOptions: {
+    responsive?: boolean
+    maintainAspectRatio?: boolean
+    height?: number
+    intersect?: boolean
+    hover?: any
+    tooltips?: any
+    layout?: any
+    pointHoverRadius?: any
+  }
+  height: number
+}
 
 export default defineComponent({
   name: 'App',
-    data (): any {
+  data(): IAppState {
     return {
       chartData: {
         labels: ['January', 'February'],
@@ -17,45 +42,68 @@ export default defineComponent({
           }
         ]
       },
-      datacollection: {},
+      dataCollection: {},
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false
-      }
+      },
+      height: 500
     }
   },
-  beforeMount () {
+  beforeMount() {
     this.fillData()
   },
   methods: {
-    fillData () {
-      this.datacollection = {
-        labels: [this.getRandomInt(), this.getRandomInt()],
+    fillData() {
+      this.dataCollection = {
+        labels: ['Red', 'Blue'],
         datasets: [
           {
             label: 'Data One',
-            backgroundColor: '#f87979',
-            data: [this.getRandomInt(), this.getRandomInt()]
-          }, 
-          {
-            label: 'Data One',
-            backgroundColor: '#f87979',
-            data: [this.getRandomInt(), this.getRandomInt()]
+            data: [this.getRandomInt(), this.getRandomInt()],
+            backgroundColor: ['red', 'blue'],
+            borderColor: ['red', 'blue'],
+            borderWidth: 1
           }
         ]
+        // labels: [this.getRandomInt(), this.getRandomInt()],
+        // datasets: [
+        //   {
+        //     label: 'Data One',
+        //     backgroundColor: '#f87979',
+        //     data: [this.getRandomInt(), this.getRandomInt()]
+        //   }, {
+        //     label: 'Data One',
+        //     backgroundColor: '#f87979',
+        //     data: [this.getRandomInt(), this.getRandomInt()]
+        //   }
+        // ]
       }
     },
-    getRandomInt () {
-      return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+    getRandomInt() {
+      return Math.floor(Math.random() * (20 - 5))
+    },
+    increase() {
+      this.height += 10
     }
   },
-  render() {
+  computed: {
+    myStyles(): { height?: string; position?: string; border?: string } {
+      return {
+        height: `${this.height}px`,
+        border: `2px solid red`,
+        position: 'relative'
+      }
+    }
+  },
+  render(): VNode {
     return (
       <div>
         {/* <h1>app tsx</h1> */}
         {/* <Line /> */}
-        <Chart chartData={this.datacollection} />
+        <Chart chartData={this.dataCollection} chartOptions={this.chartOptions} style={this.myStyles} />
         <button onClick={this.fillData}>Randomize</button>
+        <button onClick={this.increase}>Increase height</button>
       </div>
     )
   }

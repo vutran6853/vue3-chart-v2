@@ -1,12 +1,10 @@
 import Chart from 'chart.js'
-import { defineComponent, Fragment, h, reactive } from 'vue'
-
+import { defineComponent, h, reactive } from 'vue'
 
 function useChartInfo() {
-
   const state = reactive({
     myName: '',
-    userData: {}, 
+    userData: {},
     userOptions: {}
   })
 
@@ -19,20 +17,20 @@ function useChartInfo() {
   }
 
   return {
-    state, 
+    state,
     setChartData,
     setChartOption
   }
 }
 
 /**
- * 
+ *
  * @param chartsId string
  * @param chartsType string
  */
 function generateChart(chartsId, chartsType) {
   let { state, setChartData, setChartOption } = useChartInfo()
- 
+
   return defineComponent({
     name: 'BaseChart',
     props: {
@@ -79,7 +77,7 @@ function generateChart(chartsId, chartsType) {
       }
     },
     methods: {
-      renderChart (userData, userOptions ) {
+      renderChart(userData, userOptions) {
         setChartData(userData)
         setChartOption(userOptions)
 
@@ -89,18 +87,22 @@ function generateChart(chartsId, chartsType) {
         // if (!this.$refs.canvas) {
         //   throw new Error('Please remove the <template></template> tags from your chart component. See https://vue-chartjs.org/guide/#vue-single-file-components')
         // }
-        let ctx = (this).$refs.canvas.getContext('2d')
+
+        // REMOVE OLD DATA FIRST BEFORE UPDATE.
+        this.state.chartObj?.data?.datasets.pop()
+
+        let ctx = this.$refs.canvas.getContext('2d')
         this.state.chartObj = new Chart(ctx, {
           type: chartsType,
           data: userData,
-          options: userOptions,
+          options: userOptions
           // plugins: this.$data._plugins
         })
-      },
+      }
     },
     beforeMount() {
-      if ((document).getElementById(chartsId)) {
-        let ctx = (document).getElementById(chartsId).getContext('2d')
+      if (document.getElementById(chartsId)) {
+        let ctx = document.getElementById(chartsId).getContext('2d')
         this.state.chartObj = new Chart(ctx, {
           type: chartsType,
           data: {
@@ -122,27 +124,35 @@ function generateChart(chartsId, chartsType) {
       }
     },
     computed: {
-      currentChartData () {
+      currentChartData() {
         return state.userData
       },
-      currentChartOption () {
+      currentChartOption() {
         return state.userOptions
       }
     },
     watch: {
-      'chartData' (prevState, newState) {
+      chartData(prevState, newState) {
         if (prevState !== newState) {
           this.renderChart(newState, this.currentChartOption)
         }
-      } 
+      }
     },
     render() {
-      return h('canvas', {
-        ref: 'canvas',
-        id: this.chartId,
-        width: this.width,
-        height: this.height
-      })
+      // return h('canvas', {
+      //   ref: 'canvas',
+      //   id: this.chartId,
+      //   width: this.width,
+      //   height: this.height
+      // })
+      return h('div', { style: this.styles, class: this.cssClasses }, [
+        h('canvas', {
+          ref: 'canvas',
+          id: this.chartId,
+          width: this.width,
+          height: this.height
+        })
+      ])
     }
   })
 }

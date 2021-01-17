@@ -23,7 +23,7 @@ export default defineComponent({
       }
     }
   },
-  mounted () {
+  mounted() {
     // renderChart(this.chartData, this.options)
     this.renderChart(this.chartData, this.chartOptions)
   }

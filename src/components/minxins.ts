@@ -106,10 +106,10 @@ const reactiveProp = defineComponent({
     }
   },
   computed: {
-    getme (): any {
+    getme(): any {
       return this.chartData
     }
-  },
+  }
   // watch: {
   //   chartData: dataHandler
   // },
@@ -120,7 +120,7 @@ const reactiveProp = defineComponent({
   //     } else {
   //       console.log(false)
   //     }
-  //   } 
+  //   }
   // }
 })
 
