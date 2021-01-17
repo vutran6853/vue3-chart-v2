@@ -166,7 +166,6 @@ function generateChart(chartsId: string, chartsType: string) {
     watch: {
       chartData(prevState, newState) {
         if (prevState !== newState) {
-          console.log('ENTER WATCHER')
           this.renderChart(newState, this.currentChartOption)
         }
       }
