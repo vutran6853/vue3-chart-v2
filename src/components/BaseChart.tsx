@@ -119,7 +119,11 @@ function generateChart(chartsId: string, chartsType: string) {
         // }
 
         // REMOVE OLD DATA FIRST BEFORE UPDATE.
-        ;(this.state.chartObj as any)?.data?.datasets.pop()
+        if (this.state.chartObj != null && this.state.chartObj.data != null) { 
+          if (this.state.chartObj.data.datasets) {
+            this.state.chartObj.data.datasets.pop()
+          }
+        }
 
         let ctx = (this as any).$refs.canvas.getContext('2d')
         this.state.chartObj = new Chart(ctx, {

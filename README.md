@@ -65,6 +65,9 @@ import MonthlyChart from './path/to/MonthlyChart.vue'
 
 export default defineComponent({
   name: 'App',
+  components: {
+    MonthlyChart
+  }
 })
 </script>
 ```
@@ -108,6 +111,9 @@ import MonthlyChart from './path/to/MonthlyChart.vue'
 
 export default defineComponent({
   name: 'App',
+  components: {
+    MonthlyChart
+  }
 })
 </script>
 ```
