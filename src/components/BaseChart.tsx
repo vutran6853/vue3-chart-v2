@@ -175,10 +175,19 @@ function generateChart(chartsId: string, chartsType: string) {
       }
     },
     render() {
-      return (
-        <div class={this.styles}>
-          <canvas ref="canvas" id={chartsId} width={(this as any).width} height={(this as any).height}></canvas>
-        </div>
+      return h(
+        'div',
+        { class: this.styles },
+        h(
+          'canvas',
+          { 
+            ref: 'canvas',
+            id: chartsId,
+            width: this.width,
+            height: this.height
+          },
+          null
+        )
       )
     }
   })
